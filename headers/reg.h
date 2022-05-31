@@ -52,6 +52,10 @@ struct PROGRAM_MEMORY_ADDRESS_POST_INCREMENT {
     bool byte_operate;
 };
 
+struct RELATIVE_PROGRAM_MEMORY_ADDRESS {
+    unsigned char opcode : 4
+    unsigned short int k : 12
+};
 
 // 32 BITS - OPCODE
 
@@ -70,9 +74,4 @@ struct INDIRECT_PROGRAM_MEMOYR_ADDRESS {
 struct DIRECT_PROGRAM_MEMORY_ADDRESS {
     unsigned short int z_register : 16;
     unsigned char PC : 16;
-};
-
-struct RELATIVE_PROGRAM_MEMORY_ADDRESS {
-    unsigned char opcode : 4
-    unsigned short int k : 12
 };
