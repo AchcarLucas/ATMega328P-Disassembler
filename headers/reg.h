@@ -44,7 +44,12 @@ struct DATA_INDIRECT_ADDRESS_POST_DECREMENT {
 
 struct PROGRAM_MEMORY_CONSTANT_ADDRESS {
     unsigned short int z_register : 15;
-    bool LSB;
+    bool byte_operate;
+};
+
+struct PROGRAM_MEMORY_ADDRESS_POST_INCREMENT {
+    unsigned short int z_register : 15;
+    bool byte_operate;
 };
 
 
@@ -56,3 +61,18 @@ struct DIRECT_DATA_ADDRESS {
     unsigned short int data_address : 16
 };
 
+struct INDIRECT_PROGRAM_MEMOYR_ADDRESS {
+    unsigned short int z_register : 16;
+    unsigned char MSB : 6;
+    unsigned short int LSB : 16;
+};
+
+struct DIRECT_PROGRAM_MEMORY_ADDRESS {
+    unsigned short int z_register : 16;
+    unsigned char PC : 16;
+};
+
+struct RELATIVE_PROGRAM_MEMORY_ADDRESS {
+    unsigned char opcode : 4
+    unsigned short int k : 12
+};
