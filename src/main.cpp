@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <cstdio>
+#include <bitset>
 
 #include "../headers/instructions.h"
 
@@ -11,8 +12,10 @@ using namespace std;
 
 int main()
 {
-    bool result = ADC(0b0001110000111000);
+    bool result = CALL(0b1001010000001110);
     cout << "Test ADC: " << result << endl;
+    // std::bitset<16> y(0b1001010000001110 & 0b1110);
+    // cout << y << endl;
     getchar();
     return 0;
 }
