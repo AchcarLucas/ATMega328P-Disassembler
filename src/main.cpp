@@ -8,6 +8,7 @@
 #include <bitset>
 #include <cstdio>
 #include <string>
+#include <algorithm>
 #include <stdlib.h>
 
 #include "../headers/instructions.h"

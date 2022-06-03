@@ -27,7 +27,7 @@
 #define ADIW(x) ((x >> 8) == 0b10010110); // 1001 0110 KKdd KKKK
 #define AND(x) ((x >> 10) == 0b001000); // 0010 00rd dddd rrrr
 #define ANDI(x) ((x >> 12) == 0b0111); // 0111 KKKK dddd KKKK
-#define ASR(x) ((x >> 9) == 0b1001010 && (x & std::bitset<16>(0b1111)) == 0b0101); // 1001 010d dddd 0101
+#define ASR(x) ((x >> 9) == 0b1001010 and (x & std::bitset<16>(0b1111)) == 0b0101); // 1001 010d dddd 0101
 
 // Bit Clear in SREG
 #define BCLR(x) ((x >> 7) == 0b100101001 and (x & std::bitset<16>(0b1111)) == 0b1000); // 1001 0100 1sss 1000
@@ -46,7 +46,7 @@
 #define BSET(x) ((x >> 7) == 0b100101000 and (x & std::bitset<16>(0b1111)) == 0b1000); // 1001 0100 0sss 1000
 
 #define BST(x) ((x >> 9) == 0b1111101 and (x & std::bitset<16>(0b1000)) == 0x00); // 1111 101d dddd 0bbb
-#define CALL(x) ((x >> 9) == 0b1001010 and (x & std::bitset<32>(0b1110)) == 0b1110); // 1001 010k kkkk 111k kkkk kkkk kkkk kkkk
+#define CALL(x) ((x >> 25) == 0b1001010 and ((x >> 16) & std::bitset<32>(0b1110)) == 0b1110); // 1001 010k kkkk 111k kkkk kkkk kkkk kkkk
 
 
 // Clear Bit in I/O Register
@@ -63,7 +63,6 @@
 
 #define EICALL(x) (x == 0b1001010100011001); // 1001 0101 0001 1001
 #define EIJMP(x) (x == 0b1001010000011001); // 1001 0100 0001 1001
-#define ELPM(x) (x == 0b1001010000011001); // 1001 0100 0001 1001
 
 #define ELPM_I(x) (x == 0b1001010111011000); // 1001 0101 1101 1000
 #define ELPM_II(x) ((x >> 9) == 0b1001000 and (x & std::bitset<16>(0b1111)) == 0b0110); // 1001 000d dddd 0110

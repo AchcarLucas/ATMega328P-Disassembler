@@ -33,9 +33,9 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="headers/instructions.h" />
-		<Unit filename="headers/reg.h" />
+		<Unit filename="headers/opcode.h" />
+		<Unit filename="headers/test.h" />
 		<Unit filename="src/main.cpp" />
-		<Unit filename="src/reg.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
