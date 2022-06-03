@@ -186,11 +186,35 @@
 #define SPM_I_II_III(x) (x == 0b1001010111101000); // 1001 0101 1110 1000
 #define SPM_IV_V_VI(x) (x == 0b1001010111111000); // 1001 0101 1111 1000
 
-#define ST_I(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b1100); // 1001 001r rrrr 1100
-#define ST_II(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b1101); // 1001 001r rrrr 1101
-#define ST_III(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b1110); // 1001 001r rrrr 1110
+// ST – Store Indirect From Register to Data Space using Index X
+#define ST_X_I(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b1100); // 1001 001r rrrr 1100
+#define ST_X_II(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b1101); // 1001 001r rrrr 1101
+#define ST_X_III(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b1110); // 1001 001r rrrr 1110
 
-#define STD_I(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b1000); // 1000 001r rrrr 1000
-#define STD_II(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b1001); // 1001 001r rrrr 1001
-#define STD_III(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b1010); // 1001 001r rrrr 1010
-#define STD_IV(x) ((x >> 14) == 0b10 and ((x >> 12) & std::bitset<16>(0x01)) == 0x0 and ((x >> 9) & std::bitset<16>(0x01)) == 0x1 and ((x >> 3) & std::bitset<16>(0x01)) == 0x1); // 10q0 qq1r rrrr 1qqq
+// ST (STD) – Store Indirect From Register to Data Space using Index Y
+#define STD_Y_I(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b1000); // 1000 001r rrrr 1000
+#define STD_Y_II(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b1001); // 1001 001r rrrr 1001
+#define STD_Y_III(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b1010); // 1001 001r rrrr 1010
+#define STD_Y_IV(x) ((x >> 14) == 0b10 and ((x >> 12) & std::bitset<16>(0x01)) == 0x0 and ((x >> 9) & std::bitset<16>(0x01)) == 0x01 and ((x >> 3) & std::bitset<16>(0x01)) == 0x01); // 10q0 qq1r rrrr 1qqq
+
+// ST (STD) – Store Indirect From Register to Data Space using Index Z
+#define STD_Z_I(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b0000); // 1000 001r rrrr 0000
+#define STD_Z_II(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b0001); // 1001 001r rrrr 0001
+#define STD_Z_III(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b0010); // 1001 001r rrrr 0010
+#define STD_Z_IV(x) ((x >> 14) == 0b10 and ((x >> 12) & std::bitset<16>(0x01)) == 0x00 and ((x >> 9) & std::bitset<16>(0x01)) == 0x01 and ((x >> 3) & std::bitset<16>(0x01)) == 0x00); // 10q0 qq1r rrrr 0qqq
+
+#define STS_32(x) ((x >> 27) == 0b1001001 and ((x >> 16) & std::bitset<16>(0b1111)) == 0x0000); // 1001 001d dddd 0000 kkkk kkkk kkkk kkkk
+
+#define STS_16(x) ((x >> 11) == 0b10101); // 1010 1kkk dddd kkkk
+#define SUB(x) ((x >> 10) == 0b000110); // 0001 10rd dddd rrrr
+
+#define SUBI(x) ((x >> 12) == 0b0101); // 0101 KKKK dddd KKKK
+
+#define SWAP(x) ((x >> 9) == 0b1001010 and (x & std::bitset<16>(0b1111)) == 0b0010); // 1001 010d dddd 0010
+
+#define TST(x) ((x >> 10) == 0b001000); // 0010 00dd dddd dddd
+
+#define WDR(x) (x == 0b1001010110101000); // 1001 0101 1010 1000
+
+#define SWAP(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b0100); // 1001 001r rrrr 0100
+
