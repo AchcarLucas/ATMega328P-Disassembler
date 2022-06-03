@@ -216,5 +216,5 @@
 
 #define WDR(x) (x == 0b1001010110101000); // 1001 0101 1010 1000
 
-#define SWAP(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b0100); // 1001 001r rrrr 0100
+#define XCH(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b0100); // 1001 001r rrrr 0100
 
