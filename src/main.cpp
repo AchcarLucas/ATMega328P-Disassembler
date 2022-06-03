@@ -3,19 +3,22 @@
 // https://cadernodelaboratorio.com.br/en/the-avr-generated-hex-file/
 
 #include <iostream>
-#include <cstdio>
+#include <random>
+#include <time.h>
 #include <bitset>
+#include <cstdio>
+#include <string>
+#include <stdlib.h>
 
 #include "../headers/instructions.h"
-
-using namespace std;
+#include "../headers/test.h"
 
 int main()
 {
-    bool result = CALL(0b1001010000001110);
-    cout << "Test ADC: " << result << endl;
-    // std::bitset<16> y(0b1001010000001110 & 0b1110);
-    // cout << y << endl;
+    srand (time(NULL));
+
+    test_instructions();
+
     getchar();
     return 0;
 }
