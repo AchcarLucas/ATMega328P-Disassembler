@@ -1,5 +1,3 @@
-#include <assert.h>
-
 bool randomBool() {
     return (rand() % 100) & 0x01;
 }
