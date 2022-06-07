@@ -30,8 +30,14 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
+			<Add directory="$(#boost.include)" />
 		</Compiler>
+		<Linker>
+			<Add directory="$(#boost.lib)" />
+		</Linker>
+		<Unit filename="headers/init.h" />
 		<Unit filename="headers/instructions.h" />
 		<Unit filename="headers/opcode.h" />
 		<Unit filename="headers/test.h" />
