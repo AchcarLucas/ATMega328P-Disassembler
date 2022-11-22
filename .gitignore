@@ -56,3 +56,6 @@ dkms.conf
 obj
 bin
 datasheet
+
+# Layout
+ATMega328P-Disassembler.layout
