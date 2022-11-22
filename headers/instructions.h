@@ -333,8 +333,8 @@ struct packet_instructions {
 
 // ST (STD) – Store Indirect From Register to Data Space using Index Y
 #define STD_Y_I(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b1000); // 1000 001r rrrr 1000
-#define STD_Y_II(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b1001); // 1001 001r rrrr 1001
-#define STD_Y_III(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b1010); // 1001 001r rrrr 1010
+#define STD_Y_II(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b1001); // 1001 001r rrrr 1001
+#define STD_Y_III(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b1010); // 1001 001r rrrr 1010
 #define STD_Y_IV(x) ((x >> 14) == 0b10 and \
                      ((x >> 12) & std::bitset<16>(0x01)) == 0x0 \
                       and ((x >> 9) & std::bitset<16>(0x01)) == 0x01 \
@@ -347,8 +347,8 @@ struct packet_instructions {
 
 // ST (STD) – Store Indirect From Register to Data Space using Index Z
 #define STD_Z_I(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b0000); // 1000 001r rrrr 0000
-#define STD_Z_II(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b0001); // 1001 001r rrrr 0001
-#define STD_Z_III(x) ((x >> 9) == 0b1000001 and (x & std::bitset<16>(0b1111)) == 0b0010); // 1001 001r rrrr 0010
+#define STD_Z_II(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b0001); // 1001 001r rrrr 0001
+#define STD_Z_III(x) ((x >> 9) == 0b1001001 and (x & std::bitset<16>(0b1111)) == 0b0010); // 1001 001r rrrr 0010
 #define STD_Z_IV(x) ((x >> 14) == 0b10 and ((x >> 12) & std::bitset<16>(0x01)) == 0x00 \
                      and ((x >> 9) & std::bitset<16>(0x01)) == 0x01 \
                      and ((x >> 3) & std::bitset<16>(0x01)) == 0x00); // 10q0 qq1r rrrr 0qqq
@@ -494,5 +494,5 @@ bool Check_TST(std::bitset<16> x) { return TST(x) }
 bool Check_WDR(std::bitset<16> x) { return WDR(x) }
 bool Check_XCH(std::bitset<16> x) { return XCH(x) }
 
-bool CheckNull(std::bitset<32> x) { return false; }
-bool CheckNull(std::bitset<16> x) { return false; }
+bool CheckNull(std::bitset<32> x) { return true; }
+bool CheckNull(std::bitset<16> x) { return true; }

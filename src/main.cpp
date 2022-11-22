@@ -19,12 +19,12 @@
 #include "../headers/test.h"
 
 int main() {
+printf("\n");
     srand (time(NULL));
 
     packet_instructions *p_inst = init_instructions();
 
     test_instructions(p_inst);
 
-    getchar();
     return 0;
 }

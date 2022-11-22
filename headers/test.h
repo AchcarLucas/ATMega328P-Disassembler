@@ -1,3 +1,10 @@
+void print_test_info(bool b_test);
+
+void separator()
+{
+    std::cout << "-----------------------------------------------------------------------------------" << std::endl;
+}
+
 bool randomBool() {
     return (rand() % 100) & 0x01;
 }
@@ -27,25 +34,30 @@ std::bitset<32> set_32_bits(std::string mask_bits) {
 }
 
 void test_if(bool b_test, std::string f_test, std::bitset<16> y_16) {
-    std::cout << "Test |" << std::setw (10) << f_test << "\t (" << y_16 << ") - \t";
-
-    if(!b_test)
-        std::cout << "FAILED in the test" << std::endl;
-    else
-        std::cout << "passed in the test" << std::endl;
-
-    std::cout << "-----------------------------------------------------------------------------------" << std::endl;
+    std::cout << "Test |" << std::setw (20) << f_test << "\t (" << y_16 << ") - \t";
+    print_test_info(b_test);
 }
 
 void test_if(bool b_test, std::string f_test, std::bitset<32> y_32) {
-    std::cout << "Test |" << std::setw (10) << f_test << "\t (" << y_32 << ") - \t";
+    std::cout << "Test |" << std::setw (20) << f_test << "\t (" << y_32 << ") - \t";
+    print_test_info(b_test);
+}
 
-    if(b_test)
-        std::cout << "FAILED in the test" << std::endl;
+void print_test_info(bool b_test) {
+    if(!b_test)
+        #if defined(_WIN32) || defined(_WIN64)
+            std::cout << "FAILED in the test" << std::endl;
+        #else
+            std::cout << "\x1B[31m" << "FAILED in the test" << "\033[0m" << std::endl;
+        #endif
+
     else
-        std::cout << "passed in the test" << std::endl;
-
-    std::cout << "-----------------------------------------------------------------------------------" << std::endl;
+        #if defined(_WIN32) || defined(_WIN64)
+            std::cout << "passed in the test" << std::endl;
+        #else
+            std::cout << "\x1B[32mPASSED in the test\033[0m" << std::endl;
+        #endif
+    separator();
 }
 
 void test_instructions(packet_instructions *p_inst) {
@@ -53,15 +65,24 @@ void test_instructions(packet_instructions *p_inst) {
 
     std::cout << "Testing ..." << std::endl;
 
+    unsigned short c_failed = 0;
+
     for(short int i = 0; i < p_inst->len; ++i) {
             p[i].mask.erase(std::remove(p[i].mask.begin(), p[i].mask.end(), ' '), p[i].mask.end());
+            bool test = false;
             if(p[i].mask.length() == 16) {
                 std::bitset<16> y_16 = set_16_bits(p[i].mask);
-                test_if(p[i].f_16(y_16), p[i].func_name, y_16);
+                test = p[i].f_16(y_16);
+                test_if(test, p[i].func_name, y_16);
             } else {
                 std::bitset<32> y_32 = set_32_bits(p[i].mask);
-                test_if(p[i].f_32(y_32), p[i].func_name, y_32);
+                test = p[i].f_32(y_32);
+                test_if(test, p[i].func_name, y_32);
             }
+            c_failed = test ? c_failed : ++c_failed;
     }
+    std::cout << "result test: " << c_failed << " failed" << std::endl;
+    separator();
+
 }
 

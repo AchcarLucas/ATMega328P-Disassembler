@@ -140,7 +140,17 @@ packet_instructions *init_instructions() {
     p[i].func_name = "LDS_32"; p[i].mask = LDS_32_MASK; p[i].f_32 = &Check_LDS_32; ++i;
     p[i].func_name = "JMP"; p[i].mask = JMP_MASK; p[i].f_32 = &Check_JMP; ++i;
     p[i].func_name = "CALL"; p[i].mask = CALL_MASK; p[i].f_32 = &Check_CALL; ++i;
+
     p[i].func_name = "STS_32"; p[i].mask = STS_32_MASK; p[i].f_32 = &Check_STS_32; ++i;
+    p[i].func_name = "STS_16"; p[i].mask = STS_16_MASK; p[i].f_16 = &Check_STS_16; ++i;
+
+    p[i].func_name = "SUB"; p[i].mask = SUB_MASK; p[i].f_16 = &Check_SUB; ++i;
+    p[i].func_name = "SUBI"; p[i].mask = SUBI_MASK; p[i].f_16 = &Check_SUBI; ++i;
+
+    p[i].func_name = "SWAP"; p[i].mask = SWAP_MASK; p[i].f_16 = &Check_SWAP; ++i;
+    p[i].func_name = "TST"; p[i].mask = TST_MASK; p[i].f_16 = &Check_TST; ++i;
+    p[i].func_name = "WDR"; p[i].mask = WDR_MASK; p[i].f_16 = &Check_WDR; ++i;
+    p[i].func_name = "XCH"; p[i].mask = XCH_MASK; p[i].f_16 = &Check_XCH; ++i;
 
     return p_inst;
 }
