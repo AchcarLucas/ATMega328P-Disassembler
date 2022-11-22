@@ -65,11 +65,22 @@ struct packet_instructions {
 #define BRBC(x) ((x >> 10) == 0b111101); // 1111 01kk kkkk ksss
 
 // Branch if Bit in SREG is Set
-#define BRBS_MASK "1111 00kk kkkk ksss"
-#define BRBS(x) ((x >> 10) == 0b111100); // 1111 00kk kkkk ksss
+#define BRBS_MASK "1111 01kk kkkk k000"
+#define BRBS(x) ((x >> 10) == 0b111101 and (x & std::bitset<16>(0b0111)) == 0b000); // 1111 01kk kkkk k000
+
+// Branch if Carry Cleared
+#define BRCC_MASK "1111 00kk kkkk ksss"
+#define BRCC(x) ((x >> 10) == 0b111100); // 1111 00kk kkkk ksss
+
+// Branch if Carry Set
+#define BRCS_MASK "1111 00kk kkkk k000"
+#define BRCS(x) ((x >> 10) == 0b111100 and (x & std::bitset<16>(0b0111)) == 0b000); // 1111 00kk kkkk k000
 
 #define BREAK_MASK "1001 0101 1001 1000"
 #define BREAK(x) (x == 0b1001010110011000); // 1001 0101 1001 1000
+
+#define BREQ_MASK "1111 00kk kkkk k001"
+#define BREQ(x) ((x >> 10) == 0b111100 and (x & std::bitset<16>(0b0111)) == 0b001); // 1111 00kk kkkk k001
 
 // Bit Set in SREG
 #define BSET_MASK "1001 0100 0sss 1000"
@@ -84,6 +95,42 @@ struct packet_instructions {
 // Clear Bit in I/O Register
 #define CBI_MASK "1001 1000 AAAA Abbb"
 #define CBI(x) ((x >> 8) == 0b10011000); // 1001 1000 AAAA Abbb
+
+// Clear Carry Flag
+#define CLC_MASK "1001 0100 1000 1000"
+#define CLC(x) (x == 0b1001010010001000); // 1001 0100 1000 1000
+
+// Clear Half Carry Flag
+#define CLH_MASK "1001 0100 1101 1000"
+#define CLH(x) (x == 0b1001010011011000); // 1001 0100 1101 1000
+
+// Clear Half Carry Flag
+#define CLI_MASK "1001 0100 1111 1000"
+#define CLI(x) (x == 0b1001010011111000); // 1001 0100 1111 1000
+
+// Clear Negative Flag
+#define CLN_MASK "1001 0100 1010 1000"
+#define CLN(x) (x == 0b1001010010101000); // 1001 0100 1010 1000
+
+// Clear Register
+#define CLR_MASK "1001 01dd dddd dddd"
+#define CLR(x) ((x >> 10) == 0b100101); // 1001 01dd dddd dddd
+
+// Clear Signed Flag
+#define CLS_MASK "1001 0100 1100 1000"
+#define CLS(x) (x == 0b1001010011001000); // 1001 0100 1100 1000
+
+// Clear T Flag
+#define CLT_MASK "1001 0100 1110 1000"
+#define CLT(x) (x == 0b1001010011101000); // 1001 0100 1110 1000
+
+// Clear Overflow Flag
+#define CLV_MASK "1001 0100 1011 1000"
+#define CLV(x) (x == 0b1001010010111000); // 1001 0100 1011 1000
+
+// Clear Zero Flag
+#define CLZ_MASK "1001 0100 1001 1000"
+#define CLZ(x) (x == 0b1001010010011000); // 1001 0100 1001 1000
 
 #define COM_MASK "1001 010d dddd 0000"
 #define COM(x) ((x >> 9) == 0b1001010 and (x & std::bitset<16>(0b1111)) == 0x00); // 1001 010d dddd 0000
@@ -386,11 +433,23 @@ bool Check_BCLR(std::bitset<16> x) { return BCLR(x) }
 bool Check_BLD(std::bitset<16> x) { return BLD(x) }
 bool Check_BRBC(std::bitset<16> x) { return BRBC(x) }
 bool Check_BRBS(std::bitset<16> x) { return BRBS(x) }
+bool Check_BRCC(std::bitset<16> x) { return BRCC(x) }
+bool Check_BRCS(std::bitset<16> x) { return BRCS(x) }
 bool Check_BREAK(std::bitset<16> x) { return BREAK(x) }
+bool Check_BREQ(std::bitset<16> x) {return BREQ(x) }
 bool Check_BSET(std::bitset<16> x) { return BSET(x) }
 bool Check_BST(std::bitset<16> x) { return BST(x) }
 bool Check_CALL(std::bitset<32> x) { return CALL(x) }
 bool Check_CBI(std::bitset<16> x) { return CBI(x) }
+bool Check_CLC(std::bitset<16> x) { return CLC(x) }
+bool Check_CLH(std::bitset<16> x) { return CLH(x) }
+bool Check_CLI(std::bitset<16> x) { return CLI(x) }
+bool Check_CLN(std::bitset<16> x) { return CLN(x) }
+bool Check_CLR(std::bitset<16> x) { return CLR(x) }
+bool Check_CLS(std::bitset<16> x) { return CLS(x) }
+bool Check_CLT(std::bitset<16> x) { return CLT(x) }
+bool Check_CLV(std::bitset<16> x) { return CLV(x) }
+bool Check_CLZ(std::bitset<16> x) { return CLZ(x) }
 bool Check_COM(std::bitset<16> x) { return COM(x) }
 bool Check_CP(std::bitset<16> x) { return CP(x) }
 bool Check_CPC(std::bitset<16> x) { return CPC(x) }

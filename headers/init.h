@@ -1,7 +1,7 @@
 packet_instructions *init_instructions() {
     packet_instructions *p_inst = new packet_instructions;
 
-    p_inst->len = 127;
+    p_inst->len = 136;
     p_inst->s = new s_instructions[p_inst->len];
 
     s_instructions *p = p_inst->s;
@@ -25,10 +25,22 @@ packet_instructions *init_instructions() {
     p[i].func_name = "BLD"; p[i].mask = BLD_MASK; p[i].f_16 = &Check_BLD; ++i;
     p[i].func_name = "BRBC"; p[i].mask = BRBC_MASK; p[i].f_16 = &Check_BRBC; ++i;
     p[i].func_name = "BRBS"; p[i].mask = BRBS_MASK; p[i].f_16 = &Check_BRBS; ++i;
+    p[i].func_name = "BRCC"; p[i].mask = BRCC_MASK; p[i].f_16 = &Check_BRCC; ++i;
+    p[i].func_name = "BRCS"; p[i].mask = BRCS_MASK; p[i].f_16 = &Check_BRCS; ++i;
     p[i].func_name = "BREAK"; p[i].mask = BREAK_MASK; p[i].f_16 = &Check_BREAK; ++i;
+    p[i].func_name = "BREQ"; p[i].mask = BREQ_MASK; p[i].f_16 = &Check_BREQ; ++i;
     p[i].func_name = "BLD"; p[i].mask = BLD_MASK; p[i].f_16 = &Check_BLD; ++i;
     p[i].func_name = "BSET"; p[i].mask = BSET_MASK; p[i].f_16 = &Check_BSET; ++i;
     p[i].func_name = "CBI"; p[i].mask = CBI_MASK; p[i].f_16 = &Check_CBI; ++i;
+    p[i].func_name = "CLC"; p[i].mask = CLC_MASK; p[i].f_16 = &Check_CLC; ++i;
+    p[i].func_name = "CLH"; p[i].mask = CLH_MASK; p[i].f_16 = &Check_CLH; ++i;
+    p[i].func_name = "CLI"; p[i].mask = CLI_MASK; p[i].f_16 = &Check_CLI; ++i;
+    p[i].func_name = "CLN"; p[i].mask = CLN_MASK; p[i].f_16 = &Check_CLN; ++i;
+    p[i].func_name = "CLR"; p[i].mask = CLR_MASK; p[i].f_16 = &Check_CLR; ++i;
+    p[i].func_name = "CLS"; p[i].mask = CLS_MASK; p[i].f_16 = &Check_CLS; ++i;
+    p[i].func_name = "CLT"; p[i].mask = CLT_MASK; p[i].f_16 = &Check_CLT; ++i;
+    p[i].func_name = "CLV"; p[i].mask = CLV_MASK; p[i].f_16 = &Check_CLV; ++i;
+    p[i].func_name = "CLZ"; p[i].mask = CLZ_MASK; p[i].f_16 = &Check_CLZ; ++i;
     p[i].func_name = "COM"; p[i].mask = COM_MASK; p[i].f_16 = &Check_COM; ++i;
     p[i].func_name = "CP"; p[i].mask = CP_MASK; p[i].f_16 = &Check_CP; ++i;
     p[i].func_name = "CPC"; p[i].mask = CPC_MASK; p[i].f_16 = &Check_CPC; ++i;
