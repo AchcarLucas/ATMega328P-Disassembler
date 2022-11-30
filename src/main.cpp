@@ -17,14 +17,27 @@
 #include "../headers/instructions.h"
 #include "../headers/init.h"
 #include "../headers/test.h"
+#include "../headers/readhex.h"
 
 int main() {
-printf("\n");
     srand (time(NULL));
 
     packet_instructions *p_inst = init_instructions();
 
     test_instructions(p_inst);
+
+    std::vector<unsigned short> *bin;
+
+    try {
+        bin = readHexFile("test_file/blink/build/blink.hex");
+    } catch(FileException e) {
+        std::cout << "[Caught Exception] " << e.what() << std::endl;
+    }
+
+    std::cout << std::endl;
+    for (std::vector<unsigned short>::iterator it = bin->begin(); it != bin->end(); ++it) {
+        std::cout << std::setw(4) << std::setfill('0') << std::hex << (unsigned short)*it << ":";
+    }
 
     return 0;
 }
