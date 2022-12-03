@@ -56,6 +56,7 @@ int main() {
     }
 
     delete bin;
+    delete p_inst;
 
     return 0;
 }
