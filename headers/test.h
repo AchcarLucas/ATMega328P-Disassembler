@@ -23,7 +23,7 @@ std::bitset<16> set_16_bits(std::string mask_bits) {
 
 std::bitset<32> set_32_bits(std::string mask_bits) {
     std::bitset<32> bits;
-    for(short int i = 0; i < 32; i++) {
+    for(short int i = 0; i < 32; ++i) {
         bool bit = randomBool();
         if(mask_bits[31 - i] != '1' && mask_bits[31 - i] != '0')
             bits[i] = bit;
@@ -72,17 +72,16 @@ void test_instructions(packet_instructions *p_inst) {
             bool test = false;
             if(p[i].mask.length() == 16) {
                 std::bitset<16> y_16 = set_16_bits(p[i].mask);
-                test = p[i].f_16(y_16);
+                test = p[i].c_16(y_16);
                 test_if(test, p[i].func_name, y_16);
             } else {
                 std::bitset<32> y_32 = set_32_bits(p[i].mask);
-                test = p[i].f_32(y_32);
+                test = p[i].c_32(y_32);
                 test_if(test, p[i].func_name, y_32);
             }
             c_failed = test ? c_failed : ++c_failed;
     }
     std::cout << "result test: " << c_failed << " failed" << std::endl;
     separator();
-
 }
 

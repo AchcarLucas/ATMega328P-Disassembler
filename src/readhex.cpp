@@ -1,5 +1,8 @@
 #include "../headers/readhex.h"
 
+std::vector<unsigned short> * readHexFile(std::string file_name);
+void debugHexFile(std::vector<unsigned short> *bin);
+
 std::vector<unsigned short> * readHexFile(std::string file_name) {
     std::vector<unsigned short> * bin = new std::vector<unsigned short>();
     std::cout << "Open file " << file_name << std::endl;
@@ -15,10 +18,7 @@ std::vector<unsigned short> * readHexFile(std::string file_name) {
     */
     while (true) {
         if((index % 9) != 0) {
-            file >> hex[3];
-            file >> hex[2];
-            file >> hex[0];
-            file >> hex[1];
+            file >> hex[0] >> hex[1] >> hex[2] >> hex[3];
             std::stringstream SS(hex);
             SS >> std::hex >> u.value;
             bin->insert(bin->end(), u.hex);
@@ -26,9 +26,23 @@ std::vector<unsigned short> * readHexFile(std::string file_name) {
                 break;
         }
         if((++index % 9) == 0)
-            file.ignore(12);
+            file.ignore(13);
     }
 
     file.close();
     return bin;
+}
+
+void debugHexFile(std::vector<unsigned short> *bin) {
+    std::cout << std::endl;
+    short c = 0;
+    for (std::vector<unsigned short>::iterator it = bin->begin(); it != bin->end(); ++it) {
+        std::cout << std::setw(4) << std::setfill('0') << std::hex << (unsigned short)*it;
+        if(c == 4) {
+            c = 0;
+            std::cout << std::endl;
+        } else {
+            std::cout << ":";
+        }
+    }
 }

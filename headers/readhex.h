@@ -21,3 +21,4 @@ union U
 };
 
 std::vector<unsigned short> * readHexFile(std::string file_name);
+void debugHexFile(std::vector<unsigned short> *bin);
