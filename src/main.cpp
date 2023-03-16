@@ -35,6 +35,7 @@ int main() {
         bin = readHexFile("test_file/blink/build/blink.hex");
     } catch(FileException e) {
         std::cout << "[Caught Exception] " << e.what() << std::endl;
+        return 1;
     }
 
     IF_DEBUG debugHexFile(bin);
