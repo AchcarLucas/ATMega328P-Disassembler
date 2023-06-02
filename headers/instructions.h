@@ -2,6 +2,8 @@
 
 #include "opcode.h"
 
+#define WORD 2
+
 struct inst {
     std::string mnemonic_assembly;
     PC pc;
@@ -189,7 +191,7 @@ inst *E_JMP(inst *i, s_instructions s, std::bitset<32> x) {
 
     std::stringstream stream;
 
-    stream << i->mnemonic_assembly << " " << hex_format(k * 2);
+    stream << i->mnemonic_assembly << " " << hex_format(k * WORD);
     i->mnemonic_assembly = stream.str();
 
     return i;
