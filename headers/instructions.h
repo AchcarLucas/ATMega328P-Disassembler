@@ -160,6 +160,13 @@ bool Check_XCH(std::bitset<16> x) { return XCH(x) }
 bool CheckNull(std::bitset<32> x) { return true; }
 bool CheckNull(std::bitset<16> x) { return true; }
 
+std::string hex_format(int value)
+{
+    std::stringstream stream;
+    stream << "0x" << std::hex << value;
+    return stream.str();
+}
+
 /*
 * Funções de execução dos opcodes
 */
@@ -168,24 +175,23 @@ inst *E_JMP(inst *i, s_instructions s, std::bitset<32> x) {
 
     int k = 0;
 
-    for (int t = 32; t > 0; --t) {
-        std::cout << x[t];
-        if(t % 4 == 0) std::cout << " ";
-        //k |= x[t + 7] << 1;
+    // 5 bytes range [24 - 20]
+    for (int b = 24; b >= 20; --b) {
+        k <<= 1;
+        k |= x[b];
     }
 
-    /*for (int t = 0; t < 17; ++t) {
-        std::cout << x[t + 15];
-        k |= x[t + 15] << 1;
-    }*/
-
-    std::cout << std::endl;
+    // 16 bytes range [15 - 0]
+    for (int b = 15; b >= 0; --b) {
+        k <<= 1;
+        k |= x[b];
+    }
 
     std::stringstream stream;
 
-    stream << i->mnemonic_assembly << " " << std::hex << k;
-
+    stream << i->mnemonic_assembly << " " << hex_format(k * 2);
     i->mnemonic_assembly = stream.str();
+
     return i;
 }
 
