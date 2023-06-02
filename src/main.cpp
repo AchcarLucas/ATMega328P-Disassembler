@@ -32,7 +32,8 @@ int main() {
     std::vector<unsigned short> *bin;
 
     try {
-        bin = readHexFile("test_file/blink/build/blink.hex");
+        //bin = readHexFile("test_file/blink/build/blink.hex");
+        bin = readHexFile("test_file/empty/build/empty.hex");
     } catch(FileException e) {
         std::cout << "[Caught Exception] " << e.what() << std::endl;
         return 1;
@@ -43,7 +44,7 @@ int main() {
     std::string instruction_assembler = std::string();
 
     std::cout << std::endl;
-    for(PC pc = 0; pc < bin->size() - 1;) {
+    for(PC pc = 0; pc < bin->size() - 3;) {
         std::bitset<16> bitcode_16 = bin->at(pc) << 8 | bin->at(pc) >> 8;
         std::bitset<32> bitcode_32 = (bin->at(pc) << 8 | bin->at(pc) >> 8) << 16 | bin->at(pc + 1);
 
