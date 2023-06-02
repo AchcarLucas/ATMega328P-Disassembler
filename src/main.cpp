@@ -43,8 +43,8 @@ int main() {
 
     std::cout << std::endl;
     for(PC pc = 0; pc < bin->size() - 3;) {
-        std::bitset<16> bitcode_16 = bin->at(pc) << 8 | bin->at(pc) >> 8;
-        std::bitset<32> bitcode_32 = (bin->at(pc) << 8 | bin->at(pc) >> 8) << 16 | bin->at(pc + 1);
+        std::bitset<16> bitcode_16 = bin->at(pc);
+        std::bitset<32> bitcode_32 = bin->at(pc) << 16 | bin->at(pc + 1);
 
         inst *i = search_instruction(p_inst, pc, bitcode_16, bitcode_32);
         pc += i->pc;

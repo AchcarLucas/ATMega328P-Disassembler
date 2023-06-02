@@ -1,3 +1,5 @@
+#include <sstream>
+
 #include "opcode.h"
 
 struct inst {
@@ -163,6 +165,27 @@ bool CheckNull(std::bitset<16> x) { return true; }
 */
 
 inst *E_JMP(inst *i, s_instructions s, std::bitset<32> x) {
+
+    int k = 0;
+
+    for (int t = 32; t > 0; --t) {
+        std::cout << x[t];
+        if(t % 4 == 0) std::cout << " ";
+        //k |= x[t + 7] << 1;
+    }
+
+    /*for (int t = 0; t < 17; ++t) {
+        std::cout << x[t + 15];
+        k |= x[t + 15] << 1;
+    }*/
+
+    std::cout << std::endl;
+
+    std::stringstream stream;
+
+    stream << i->mnemonic_assembly << " " << std::hex << k;
+
+    i->mnemonic_assembly = stream.str();
     return i;
 }
 

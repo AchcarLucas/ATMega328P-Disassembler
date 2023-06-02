@@ -18,7 +18,7 @@ std::vector<unsigned short> * readHexFile(std::string file_name) {
     */
     while (true) {
         if((index % 9) != 0) {
-            file >> hex[0] >> hex[1] >> hex[2] >> hex[3];
+            file >> hex[2] >> hex[3] >> hex[0] >> hex[1];
             std::stringstream SS(hex);
             SS >> std::hex >> u.value;
             bin->insert(bin->end(), u.hex);
