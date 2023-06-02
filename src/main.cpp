@@ -2,8 +2,6 @@
 // http://ww1.microchip.com/downloads/en/devicedoc/atmel-0856-avr-instruction-set-manual.pdf
 // https://cadernodelaboratorio.com.br/en/the-avr-generated-hex-file/
 
-// install boost 1.79.0
-
 #include <iostream>
 #include <iomanip>
 #include <random>
@@ -32,8 +30,8 @@ int main() {
     std::vector<unsigned short> *bin;
 
     try {
-        //bin = readHexFile("test_file/blink/build/blink.hex");
-        bin = readHexFile("test_file/empty/build/empty.hex");
+        bin = readHexFile("test_file/blink/build/blink.hex");
+        // bin = readHexFile("test_file/empty/build/empty.hex");
     } catch(FileException e) {
         std::cout << "[Caught Exception] " << e.what() << std::endl;
         return 1;
