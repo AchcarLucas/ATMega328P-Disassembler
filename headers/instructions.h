@@ -3,6 +3,8 @@
 #include "opcode.h"
 
 #define WORD 2
+#define STR_NONE ".WORD"
+#define STR_NOP "NOP"
 
 struct inst {
     std::string mnemonic_assembly;
@@ -218,10 +220,20 @@ inst *E_MULSU(inst *i, s_instructions s, std::bitset<16> x) {
 }
 
 inst *E_NONE_16(inst *i, s_instructions s, std::bitset<16> x) {
+    if(s.func_name != std::string(STR_NOP)) {
+        std::stringstream stream;
+        stream << std::string(STR_NONE) << " 0x" << std::setw(4) << std::setfill('0') << std::hex << x.to_ulong();
+        i->mnemonic_assembly = stream.str();
+    }
     return i;
 }
 
 inst *E_NONE_32(inst *i, s_instructions s, std::bitset<32> x) {
+    if(s.func_name != std::string(STR_NOP)) {
+        std::stringstream stream;
+        stream << std::string(STR_NONE) << " 0x" << std::setw(8) << std::setfill('0') << std::hex << x.to_ulong();
+        i->mnemonic_assembly = stream.str();
+    }
     return i;
 }
 
