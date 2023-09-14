@@ -220,6 +220,10 @@ inst *E_MULSU(inst *i, s_instructions s, std::bitset<16> x) {
 }
 
 inst *E_NONE_16(inst *i, s_instructions s, std::bitset<16> x) {
+    /*
+    * verificamos se a função  diferente de NOP, se for vamos exibir um .word com o hex
+    * de 16 bits (0xFFFF) indicando um opcode inválido
+    */
     if(s.func_name != std::string(STR_NOP)) {
         std::stringstream stream;
         stream << std::string(STR_NONE) << " 0x" << std::setw(4) << std::setfill('0') << std::hex << x.to_ulong();
@@ -229,6 +233,10 @@ inst *E_NONE_16(inst *i, s_instructions s, std::bitset<16> x) {
 }
 
 inst *E_NONE_32(inst *i, s_instructions s, std::bitset<32> x) {
+    /*
+    * verificamos se a função  diferente de NOP, se for vamos exibir um .word com o hex
+    * de 32 bits (0xFFFFFFFF) indicando um opcode inválido
+    */
     if(s.func_name != std::string(STR_NOP)) {
         std::stringstream stream;
         stream << std::string(STR_NONE) << " 0x" << std::setw(8) << std::setfill('0') << std::hex << x.to_ulong();
