@@ -226,6 +226,9 @@ inst *E_CPC(inst *i, s_instructions s, std::bitset<16> x) {
     return i;
 }
 
+/*
+ * Página 126 (AVR Instruction Set Manual)
+ */
 inst *E_MULS(inst *i, s_instructions s, std::bitset<16> x) {
     unsigned short Rd = ((x.to_ulong() >> 4) & 0b1111) + 0x10;
     unsigned short Rr = (x.to_ulong() & 0b1111) + 0x10;
@@ -238,6 +241,9 @@ inst *E_MULS(inst *i, s_instructions s, std::bitset<16> x) {
     return i;
 }
 
+/*
+ * Página 127 (AVR Instruction Set Manual)
+ */
 inst *E_MULSU(inst *i, s_instructions s, std::bitset<16> x) {
     unsigned short Rd = ((x.to_ulong() >> 3) & 0b111) + 0x10;
     unsigned short Rr = (x.to_ulong() & 0b111) + 0x10;
