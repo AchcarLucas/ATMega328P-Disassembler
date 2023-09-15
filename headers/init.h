@@ -97,7 +97,7 @@ packet_instructions *init_instructions() {
     p[i].func_name = "MOVW"; p[i].mask = MOVW_MASK; p[i].c_16 = &Check_MOVW; ++i;
     p[i].func_name = "MUL"; p[i].mask = MUL_MASK; p[i].c_16 = &Check_MUL; ++i;
     p[i].func_name = "MULS"; p[i].mask = MULS_MASK; p[i].c_16 = &Check_MULS; p[i].e_16 = &E_MULS; ++i;
-    p[i].func_name = "MULSU"; p[i].mask = MULSU_MASK; p[i].c_16 = &Check_MULSU; ++i;
+    p[i].func_name = "MULSU"; p[i].mask = MULSU_MASK; p[i].c_16 = &Check_MULSU; p[i].e_16 = &E_MULSU; ++i;
     p[i].func_name = "NEG"; p[i].mask = NEG_MASK; p[i].c_16 = &Check_NEG; ++i;
 
     p[i].func_name = "NOP"; p[i].mask = NOP_MASK; p[i].c_16 = &Check_NOP; p[i].e_16 = &E_NONE_16; ++i;

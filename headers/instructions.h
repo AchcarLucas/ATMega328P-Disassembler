@@ -234,10 +234,19 @@ inst *E_MULS(inst *i, s_instructions s, std::bitset<16> x) {
 
     stream << i->mnemonic_assembly << " " << R_REGISTER << Rd << ", " << R_REGISTER <<  Rr;
     i->mnemonic_assembly = stream.str();
+
     return i;
 }
 
 inst *E_MULSU(inst *i, s_instructions s, std::bitset<16> x) {
+    unsigned short Rd = ((x.to_ulong() >> 3) & 0b111) + 0x10;
+    unsigned short Rr = (x.to_ulong() & 0b111) + 0x10;
+
+    std::stringstream stream;
+
+    stream << i->mnemonic_assembly << " " << R_REGISTER << Rd << ", " << R_REGISTER <<  Rr;
+    i->mnemonic_assembly = stream.str();
+
     return i;
 }
 
