@@ -211,11 +211,10 @@ inst *E_ADD(inst *i, s_instructions s, std::bitset<16> x) {
     return i;
 }
 
+/*
+ * Página 79 (AVR Instruction Set Manual)
+ */
 inst *E_CPC(inst *i, s_instructions s, std::bitset<16> x) {
-
-    /*
-     * Página 79 (AVR Instruction Set Manual)
-     */
     unsigned short Rd = (x.to_ulong() >> 4) & 0b11111;
     unsigned short Rr = (((x.to_ulong() >> 5) & 0b10000) | (x.to_ulong() & 0b1111)) & 0b11111;
 
