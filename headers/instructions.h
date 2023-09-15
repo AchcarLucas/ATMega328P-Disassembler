@@ -3,8 +3,12 @@
 #include "opcode.h"
 
 #define WORD 2
+
 #define STR_NONE ".WORD"
 #define STR_NOP "NOP"
+
+#define R_REGISTER "r"
+
 
 struct inst {
     std::string mnemonic_assembly;
@@ -164,10 +168,10 @@ bool Check_XCH(std::bitset<16> x) { return XCH(x) }
 bool CheckNull(std::bitset<32> x) { return true; }
 bool CheckNull(std::bitset<16> x) { return true; }
 
-std::string hex_format(int value)
+std::string hex_format(int value, bool initial_zero = true)
 {
     std::stringstream stream;
-    stream << "0x" << std::hex << value;
+    stream << ((initial_zero) ? "0x" : "") << std::hex << value;
     return stream.str();
 }
 
@@ -208,6 +212,18 @@ inst *E_ADD(inst *i, s_instructions s, std::bitset<16> x) {
 }
 
 inst *E_CPC(inst *i, s_instructions s, std::bitset<16> x) {
+    unsigned short Rd = (x.to_ulong() >> 4) & 0b11111;
+    unsigned short Rr = (((x.to_ulong() >> 5) & 0b10000) | (x.to_ulong() & 0b1111)) & 0b11111;
+
+    //std::cout << std::bitset<16>(x.to_ulong()) << std::endl;
+    //std::cout << "Rd "<< Rd << std::endl;
+    //std::cout << "Rr "<< Rr << std::endl;
+
+    std::stringstream stream;
+
+    stream << i->mnemonic_assembly << " " << R_REGISTER << Rd << ", " << R_REGISTER <<  Rr;
+    i->mnemonic_assembly = stream.str();
+
     return i;
 }
 
