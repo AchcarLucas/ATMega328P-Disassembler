@@ -1,0 +1,28 @@
+GitHub Copilot
+--------------------------------------------------------------------
+Dentro do 'headers/instructions.h', temos
+
+'bool Check_ADC(std::bitset<16> x) { return ADC(x) }'
+Onde Check_Y, onde 'Y' representa a instrução no ATMega328P
+
+Dentro do 'headers/init.h', temos as definições das funções, tanto do check
+'p[i].c_32' para as instruções de 32 bits ou 'p[i].c_16' para as instruções de 16 bits
+
+Voltanos ao 'headers/instructions.h', temos algo como
+'inst *E_JMP(inst *i, s_instructions s, std::bitset<32> x) '
+nesse caso, é a implementação da instrução, considerando seu opcode x e sua instrução (no caso já definido)
+
+Como pode ser visto no código
+'E_JMP', 'E_ADC', 'E_ADD', 'E_CPC', 'E_MULS' e 'E_MULSU' já foram feitas
+O resto esta com algo genérico, pois ainda não foram implementadas, assim, recebendo o 'E_NONE_16' e 'E_NONE_32'
+
+Agora, quero que você descreva todos os outros métodos descritos 'init.h', faça os métodos em 'instructions.h' e chame em 'p[i].e_32 = ' ou 'p[i].c_16' do 'init.h' para seu método especifico, seja 16 ou 32 bits
+
+Se precisar do manual, os documentos ficam em /docs na pasta principal
+Temos: 'atmel-0856-avr-instruction-set-manual.pdf' e 'Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf'
+
+
+OBS: Não mexer no método 'inst *search_instruction(packet_instructions *p_inst, PC pc, std::bitset<16> bitcode_16, std::bitset<32> bitcode_32)'
+
+--------------------------------------------------------------------
+
