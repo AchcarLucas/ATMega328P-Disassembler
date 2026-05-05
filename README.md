@@ -2,6 +2,11 @@
 
 Um disassembler simples para o conjunto de instruções AVR do ATMega328P, escrito em C++.
 
+<div align="center">
+  <img src="./preview/image_1.png" width="20%" />
+  <img src="./preview/image_2.png" width="45%" />
+</div>
+
 ## O que ele faz
 
 - Lê arquivos Intel HEX (`.hex`) gerados para o ATMega328P
