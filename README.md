@@ -35,7 +35,6 @@ Este projeto é útil para:
 A forma mais direta é com `g++`:
 
 ```bash
-cd /home/achcarlucas/Documentos/Documentos\ -\ Lucas/GitHub/ATMega328P-Disassembler
 g++ -I headers src/main.cpp src/readhex.cpp -o disassembler
 ```
 
