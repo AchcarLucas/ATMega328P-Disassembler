@@ -58,3 +58,5 @@ datasheet
 
 # Layout
 ATMega328P-Disassembler.layout
+
+.disassembler
